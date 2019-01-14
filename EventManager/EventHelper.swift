@@ -18,10 +18,10 @@ class EventHelper {
     
     // MARK: Properties
     /// The store with wich all methods in the eventHelper interact
-    /*private*/ let store: EKEventStore!
+    /*private*/ let store: EventStoring!
     
     // MARK: Initializer
-    init(with store: EKEventStore) {
+    init(with store: EventStoring) {
         self.store = store
     }
     
@@ -243,4 +243,26 @@ enum EventHelperError: Error {
     case unableToRetrieveEvent(identifier: String?)
     /// The retrieval of the identifier from a EventCreationPreset was unsuccsessfull.
     case unableToRetrieveEventID
+}
+
+
+// MARK: EVentStoring Protocol
+
+/// A protocol that combines all interfaces of EKEventStore I use in my app under its definition.
+/// - Note: I use this to create a mock store for unit testing.
+protocol EventStoring {
+    var defaultCalendarForNewEvents: EKCalendar? { get }
+    
+    func save(_ event: EKEvent, span: EKSpan, commit: Bool) throws
+    /// Returns the first occurrence of an event with a given identifier.
+    /// - parameter identifier: The identifier of the event.
+    func event(withIdentifier identifier: String) -> EKEvent?
+    func remove(_ event: EKEvent, span: EKSpan) throws
+    func requestAccess(to entityType: EKEntityType, completion: @escaping EKEventStoreRequestAccessCompletionHandler)
+    static func authorizationStatus(for entityType: EKEntityType) -> EKAuthorizationStatus
+    func reset()
+}
+
+// Let EKEventStore conform to the protocol
+extension EKEventStore: EventStoring {
 }
