@@ -23,8 +23,7 @@ class EventCreationPreset: NSObject, NSCoding {
     /// The identifier of the calendar event that was created with the event creation preset.
     /// - Note: As long as no calender event has been created whith the preset it should be nil
     /// - TODO: change this to a dictionary: Key DeviceID, Value EventID
-    var identifierForEvent: String?
-    
+    private var identifierForEvent: String?
     
     // MARK: Archiving Paths
     static let DocumentDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -68,6 +67,48 @@ class EventCreationPreset: NSObject, NSCoding {
         super.init()
     }
     
+    // MARK: Accessing the identifier
+    /// Saves a new value as the identifier while making sure it is of the right format.
+    /// - TODO: Execute the verification using slices
+    func set(_ identifier: String) throws {
+
+        // Seperate the two uuid by the : character.
+        guard identifier.contains(":") else {
+            throw EventPresetError.notAnIdentifier(itIs: identifier)
+        }
+        let twoUUIDs = identifier.components(separatedBy: ":")
+
+        // Seperate each uuid into its substrings seperated by the - character.
+        var subStrings: [String] = []
+        for uuid in twoUUIDs {
+            guard uuid.contains("-") else {
+                throw EventPresetError.notAnIdentifier(itIs: identifier)
+            }
+            subStrings.append(contentsOf: uuid.components(separatedBy: "-"))
+        }
+        
+        // Check the substrings of each uuid to be 8, 4, 4, 4 and 12 characters long.
+        let lengthValues = [8,4,4,4,12]
+        for (index, string) in subStrings.enumerated() {
+            var myIndex: Int
+            if index >= 5 {
+                myIndex = index - 5
+            } else {
+                myIndex = index
+            }
+            guard string.count == lengthValues[myIndex] else {
+                throw EventPresetError.notAnIdentifier(itIs: identifier)
+            }
+        }
+        
+        // If test are successfull set the value of the identifier.
+        identifierForEvent = identifier
+    }
+    
+    func getIdentifier() -> String? {
+        return identifierForEvent
+    }
+    
     // MARK: NSCoding
     func encode(with aCoder: NSCoder) {
         aCoder.encode(title, forKey: PropertyKey.title)
@@ -100,4 +141,9 @@ class EventCreationPreset: NSObject, NSCoding {
         // Must call designated initializer
         self.init(title: name, date: date, identifierForEvent: id)
     }
+}
+
+// MARK: Error conditions
+enum EventPresetError: Error {
+    case  notAnIdentifier(itIs: String)
 }

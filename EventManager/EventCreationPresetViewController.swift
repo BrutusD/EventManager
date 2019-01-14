@@ -115,7 +115,7 @@ class EventCreationPresetViewController: UIViewController, UITextFieldDelegate {
             // Grab all information about the preset.
             let title = titleTextField.text ?? "No Name"
             let date = datePicker.date
-            let identifier = eventCreationPreset?.identifierForEvent
+            let identifier = eventCreationPreset?.getIdentifier()
             
             // Set the EventCreationPreset to be passed to the PresetsTableViewController after the unwind segue.
             eventCreationPreset = EventCreationPreset(title: title, date: date, identifierForEvent: identifier)

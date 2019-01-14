@@ -164,33 +164,35 @@ class PresetsTableViewController: UITableViewController {
                 // If no table view row is selected create a new calendar event that corresponds to the preset.
                 do  {
                     newCalendarEventIdentifier = try eventHelper.createCalendarEvent(for: preset)
+                    // If the retruned identifier is nil, we will have an orphan calender entry, which is not good
+                    guard newCalendarEventIdentifier != nil else {
+                        fatalError("Could not retrieve event id.")
+                    }
+                    // TODO: The event helper should assure, that he always returns a string.
+                    
+                    // Assing the EKevent identifier to the preset.
+                    try preset.set(newCalendarEventIdentifier!)
+                    
+                    // Add the new event creation preset to the preset array.
+                    let newIndexPath = IndexPath(row: presets.count, section: 0)
+                    
+                    presets.append(preset)
+                    tableView.insertRows(at: [newIndexPath], with: .automatic)
+                    
                 } catch EventHelperError.authorisationDenied {
                     print("Access to the EKEventStore was denied.")
                     // TODO: Let the user know, we need permission to acces the calender for the app to work.
                 } catch EventHelperError.authorisationRestricted {
                     print("Users Access to calender is restricted.")
                     // TODO: Let the user know the app can not work since his access to the calendar is restricted and what that means.
+                } catch EventPresetError.notAnIdentifier(let notAValidIdentifier) {
+                    print("The Identifier suppllied to the event preset is not a valid identifier: \(notAValidIdentifier)")
                 } catch {
                     print("Unexpected error \(error).")
                 }
                 
-                // If the retruned identifier is nil, we will have an orphan calender entry, which is not good
-                guard newCalendarEventIdentifier != nil else {
-                    fatalError("Could not retrieve event id.")
-                }
-                // TODO: The event helper should assure, that he always returns a string.
-
-                
-                // Assing the EKevent identifier to the preset.
-                preset.identifierForEvent = newCalendarEventIdentifier
-                
-                // Add the new event creation preset to the preset array.
-                let newIndexPath = IndexPath(row: presets.count, section: 0)
-                
-                presets.append(preset)
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
-            // Save the presets.
+            // Either way save the presets.
             saveEventCreationPresets()
         }
     }
@@ -210,7 +212,7 @@ class PresetsTableViewController: UITableViewController {
             }
             
             // Make shure the selected preset matches the preset from sender
-            guard presets[selectedIndexPath.row].identifierForEvent == preset.identifierForEvent else {
+            guard presets[selectedIndexPath.row].getIdentifier() == preset.getIdentifier() else {
                 print("The view controller is expecting a different preset to be edited.")
                 return
             }
@@ -261,8 +263,9 @@ class PresetsTableViewController: UITableViewController {
             // Create events for all presets
             for preset in presets {
                 do {
-                    let newIdentifier = try eventHelper.createCalendarEvent(for: preset)
-                    preset.identifierForEvent = newIdentifier
+                    if let newIdentifier = try eventHelper.createCalendarEvent(for: preset) {
+                        try preset.set(newIdentifier)
+                    }
                 } catch {
                     print("Unable to create event \"\(preset.title)\": \(error)")
                 }

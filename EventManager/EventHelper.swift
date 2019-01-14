@@ -43,7 +43,7 @@ class EventHelper {
         try confirmAuthorization(for: .event)
         
         // Create a new event with instructions from the preset.
-        let newEvent = EKEvent(eventStore: store)
+        let newEvent = EKEvent(eventStore: store as! EKEventStore)
         newEvent.title = eventCreationPreset.title
         newEvent.startDate = eventCreationPreset.date
         newEvent.endDate = eventCreationPreset.date.addingTimeInterval(EventCreationPreset.twoHourTimeInterval!)
@@ -75,7 +75,7 @@ class EventHelper {
         try confirmAuthorization(for: .event)
         
         // Find the calender event with the identifier from the preset.
-        if let eventID = eventCreationPreset.identifierForEvent, let eventToRemove = self.store.event(withIdentifier: eventID) {
+        if let eventID = eventCreationPreset.getIdentifier(), let eventToRemove = self.store.event(withIdentifier: eventID) {
             print("Deletion Proces for \(String(describing: eventToRemove))")
             
             // Delete it from the eventstore or handle occuring errors.
@@ -100,7 +100,7 @@ class EventHelper {
         try confirmAuthorization(for: .event)
         
         // Make sure there is a event identifier stored in the event creation preset.
-        guard let eventID = eventCreationPreset.identifierForEvent else {
+        guard let eventID = eventCreationPreset.getIdentifier() else {
             throw EventHelperError.unableToRetrieveEventID
         }
         
@@ -190,7 +190,7 @@ class EventHelper {
     func needsToUpdate(_ preset: EventCreationPreset) throws -> Bool {
         try confirmAuthorization(for: .event)
         
-        guard let identifier = preset.identifierForEvent else {
+        guard let identifier = preset.getIdentifier() else {
             throw EventHelperError.unableToRetrieveEventID
         }
         
@@ -213,7 +213,7 @@ class EventHelper {
     func update(_ preset: EventCreationPreset) throws {
         try confirmAuthorization(for: .event)
         
-        guard let identifier = preset.identifierForEvent else {
+        guard let identifier = preset.getIdentifier() else {
             throw EventHelperError.unableToRetrieveEventID
         }
         

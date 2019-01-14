@@ -37,19 +37,19 @@ class EventManagerTests: XCTestCase {
     // MARK: EventCreationPreset Class Tests
     //Confirm that the EventCreationPreset initializer returns a EventCreationPreset object when passed valid parameters.
     func testEventInitializationSucceds() {
-        // Initialize with a valid UUID
-        let UUIDEvent = EventCreationPreset.init(title: "Test Event", date: Date(), id: UUID().uuidString)
+        // Initialize with a valid UUID, that seem to be two uuids seeperated by a colon
+        let UUIDEvent = EventCreationPreset.init(title: "Test Event", date: Date(), identifierForEvent: UUID().uuidString + ":" + UUID().uuidString)
         XCTAssertNotNil(UUIDEvent)
     }
     
     //Confirm that the EventCreationPreset initializer returns nil whe passed a non vailid uuid string
     func testEventInitializationFails() {
         // invalid UUID string, that looks valid but is not
-        let someStringEvent = EventCreationPreset.init(title: "Test Event", date: Date(), id: "F8EAC467-9EC2-476C-BF30-45588240A8D0:BA6D7488-05CF-4270-BF53-2EA497A8C928")
+        let someStringEvent = EventCreationPreset.init(title: "Test Event", date: Date(), identifierForEvent: "F8EAC467-9EC2-476C-BF30-45588240A8D0")
         XCTAssertNil(someStringEvent)
         
         // Empty title string
-        let emptyNameStringEvent = EventCreationPreset.init(title: "", date: Date(), id: UUID().uuidString)
+        let emptyNameStringEvent = EventCreationPreset.init(title: "", date: Date(), identifierForEvent: UUID().uuidString)
         XCTAssertNil(emptyNameStringEvent)
     }
 
@@ -57,6 +57,8 @@ class EventManagerTests: XCTestCase {
      - TODO: Write test for the event helper
      Information on how to write test for EventKit using the EKEventStore [from Stack Overflow](https://stackoverflow.com/questions/25410129/any-chance-to-write-unit-tests-against-ekeventstore?rq=1)
      */
+    
+    // - ToDo: Write a test, that assainges different strings to an event preset. some work some don't
     
 
 }
