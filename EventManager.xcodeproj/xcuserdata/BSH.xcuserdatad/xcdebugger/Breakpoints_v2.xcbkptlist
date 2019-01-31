@@ -20,12 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/PresetsTableViewController.swift"
-            timestampString = "569139369.785261"
+            timestampString = "570650890.322896"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
-            landmarkName = "loadEventCreationPresets()"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
+            landmarkName = "storeChanged()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -36,12 +36,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventHelper.swift"
-            timestampString = "569139369.785625"
+            timestampString = "570650890.322962"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "update(_:)"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "needsToUpdate(_:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -84,12 +84,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventHelper.swift"
-            timestampString = "569139369.785846"
+            timestampString = "570650890.323369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "needsToUpdate(_:)"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "confirmAuthorization(for:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -132,13 +132,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventHelper.swift"
-            timestampString = "569139369.785917"
+            timestampString = "570650890.323709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "needsToUpdate(_:)"
-            landmarkType = "7">
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "EventHelper"
+            landmarkType = "3">
             <Actions>
                <BreakpointActionProxy
                   ActionExtensionID = "Xcode.BreakpointAction.Log">
@@ -169,7 +169,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventCreationPresetViewController.swift"
-            timestampString = "569139369.785987"
+            timestampString = "569155317.121235"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
@@ -193,11 +193,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/PresetsTableViewController.swift"
-            timestampString = "569139369.786198"
+            timestampString = "570650890.324097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "unwindToPresetsList(sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -209,13 +209,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/PresetsTableViewController.swift"
-            timestampString = "569139369.786274"
+            timestampString = "570650890.324156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
-            landmarkName = "PresetsTableViewController"
-            landmarkType = "3">
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "unwindToPresetListAndDelete(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventManagerTests/EventCreationPresetTests.swift"
+            timestampString = "569230735.168444"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "testUnacceptableIdentifierWontBeStored()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventManager/EventManager.swift"
+            timestampString = "570650890.324258"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "createCalendarEvent(for:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

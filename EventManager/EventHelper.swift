@@ -8,6 +8,15 @@
 
 import EventKit
 
+// - TODO: Rewirite it to satisfy the EventHandling protocol
+/*
+protocol EventHandling {
+    func create(from preset: EventCreationPreset) throws -> EKEvent
+    func save(_ event: EKEvent) throws -> String
+    func removeCalenderEvent(of preset: EventCreationPreset) throws
+    ...
+}
+*/
 /**
  A class that abstracts all interaction with the EKEventStore object for you
 
@@ -18,10 +27,11 @@ class EventHelper {
     
     // MARK: Properties
     /// The store with wich all methods in the eventHelper interact
-    /*private*/ let store: EventStoring!
+    /*private*/ let store: EKEventStore!
     
+//    let secondStore: EKEventStore!
     // MARK: Initializer
-    init(with store: EventStoring) {
+    init(with store: EKEventStore) {
         self.store = store
     }
     
@@ -62,7 +72,6 @@ class EventHelper {
             return nil
         }
     }
-
     
     /**
      Removes the calender event that was created whith the event creation preset from the event store
@@ -104,7 +113,7 @@ class EventHelper {
             throw EventHelperError.unableToRetrieveEventID
         }
         
-        // Get the calender event assosiated with the identifier.
+        // Get the calender event assosiated with the identifier from the store.
         guard let eventToUpdate = self.store.event(withIdentifier: eventID) else {
             throw EventHelperError.unableToRetrieveEvent(identifier: eventID)
         }
@@ -184,9 +193,12 @@ class EventHelper {
         }
     }
     
-    // MARK: Re
+    // - MARK: Updating EventPresets
+    // TODO: Rewrite it Seperating Logic and Effects, which is explained here.
+    // (https://developer.apple.com/videos/play/wwdc2017-414/?time=896)
     
     /// This checks weather an preset needs to be uptdated, since the event created with it got changes outside of the app.
+    /// - Todo: What if the callender changed, how to retrieve the event then?
     func needsToUpdate(_ preset: EventCreationPreset) throws -> Bool {
         try confirmAuthorization(for: .event)
         
@@ -243,26 +255,4 @@ enum EventHelperError: Error {
     case unableToRetrieveEvent(identifier: String?)
     /// The retrieval of the identifier from a EventCreationPreset was unsuccsessfull.
     case unableToRetrieveEventID
-}
-
-
-// MARK: EVentStoring Protocol
-
-/// A protocol that combines all interfaces of EKEventStore I use in my app under its definition.
-/// - Note: I use this to create a mock store for unit testing.
-protocol EventStoring {
-    var defaultCalendarForNewEvents: EKCalendar? { get }
-    
-    func save(_ event: EKEvent, span: EKSpan, commit: Bool) throws
-    /// Returns the first occurrence of an event with a given identifier.
-    /// - parameter identifier: The identifier of the event.
-    func event(withIdentifier identifier: String) -> EKEvent?
-    func remove(_ event: EKEvent, span: EKSpan) throws
-    func requestAccess(to entityType: EKEntityType, completion: @escaping EKEventStoreRequestAccessCompletionHandler)
-    static func authorizationStatus(for entityType: EKEntityType) -> EKAuthorizationStatus
-    func reset()
-}
-
-// Let EKEventStore conform to the protocol
-extension EKEventStore: EventStoring {
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 import os.log
+import EventKit
+// TODO: Wie kann ich unterbinden, dass der ViewController von EventKit wissen muss. Im moment brauche ich es nur, um dem property eventHelper seinen typ geben zu können.
 
 /// An object that manages an array of event creation presets and a helper object, that supplies methods to communicate with the event store.
 class PresetsTableViewController: UITableViewController {
@@ -16,7 +18,7 @@ class PresetsTableViewController: UITableViewController {
     /// An array of event creation presets.
     var presets = [EventCreationPreset]()
     /// An helper object that manages the comunication with the event store.
-    var eventHelper: EventHelper!
+    var eventManager: EventManger<EKEvent>!
     
     
     override func viewDidLoad() {
@@ -31,7 +33,7 @@ class PresetsTableViewController: UITableViewController {
         
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(PresetsTableViewController.storeChanged), name: .EKEventStoreChanged, object: eventHelper.store)
+        NotificationCenter.default.addObserver(self, selector: #selector(PresetsTableViewController.storeChanged), name: .EKEventStoreChanged, object: eventManager.store)
     }
 
     // MARK: - Table view data source
@@ -69,7 +71,7 @@ class PresetsTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the event from the event store
             do {
-                try eventHelper.removeCalenderEventCorrspondingTo(presets[indexPath.row])
+                try eventManager!.removeCalendarEventCorrespondingTo(presets[indexPath.row])
             } catch {
                 print("An error occured while deleting an event: \(error)")
             }
@@ -148,7 +150,7 @@ class PresetsTableViewController: UITableViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing calender event with the information from the preset.
                 do {
-                    try eventHelper.editCalenderEventCorrespondingTo(preset)
+                    try eventManager.editCalendarEventCorrespondingTo(preset)
                     
                     // And update the preset in the array.
                     presets[selectedIndexPath.row] = preset
@@ -163,7 +165,7 @@ class PresetsTableViewController: UITableViewController {
             else {
                 // If no table view row is selected create a new calendar event that corresponds to the preset.
                 do  {
-                    newCalendarEventIdentifier = try eventHelper.createCalendarEvent(for: preset)
+                    newCalendarEventIdentifier = try eventManager.createCalendarEvent(for: preset)
                     // If the retruned identifier is nil, we will have an orphan calender entry, which is not good
                     guard newCalendarEventIdentifier != nil else {
                         fatalError("Could not retrieve event id.")
@@ -190,7 +192,6 @@ class PresetsTableViewController: UITableViewController {
                 } catch {
                     print("Unexpected error \(error).")
                 }
-                
             }
             // Either way save the presets.
             saveEventCreationPresets()
@@ -219,7 +220,7 @@ class PresetsTableViewController: UITableViewController {
             
             do {
                 // Delete the event from the calender.
-                try eventHelper.removeCalenderEventCorrspondingTo(preset)
+                try eventManager.removeCalendarEventCorrespondingTo(preset)
                 
                 // Remove the preset from the array and reload the table view row
                 presets.remove(at: selectedIndexPath.row)
@@ -263,9 +264,8 @@ class PresetsTableViewController: UITableViewController {
             // Create events for all presets
             for preset in presets {
                 do {
-                    if let newIdentifier = try eventHelper.createCalendarEvent(for: preset) {
-                        try preset.set(newIdentifier)
-                    }
+                    let newIdentifier = try eventManager.createCalendarEvent(for: preset)
+                    try preset.set(newIdentifier)
                 } catch {
                     print("Unable to create event \"\(preset.title)\": \(error)")
                 }
@@ -293,8 +293,8 @@ class PresetsTableViewController: UITableViewController {
         
         for preset in presets {
             do {
-                if try eventHelper.needsToUpdate(preset) {
-                   try eventHelper.update(preset)
+                if try eventManager.needsToUpdate(preset) {
+                   try eventManager.update(preset)
                 }
             } catch EventHelperError.unableToRetrieveEvent(_) {
                 // If the evnet could not be retrieved with the identifier stored in the preset, the event probably has been deleted.

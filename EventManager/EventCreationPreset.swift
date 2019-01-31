@@ -144,6 +144,7 @@ class EventCreationPreset: NSObject, NSCoding {
 }
 
 // MARK: Error conditions
+/// - TODO: Rename the error
 enum EventPresetError: Error {
     case  notAnIdentifier(itIs: String)
 }
