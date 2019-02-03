@@ -90,31 +90,7 @@ protocol EventStoring {
 }
 
 // Let EKEventStore conform to the protocol by letting the generic functions call there concrete counterparts on EKEventStore
-extension EKEventStore: EventStoring {
-//    func save<Event>(_ event: Event, span: EKSpan, commit: Bool) throws {
-//        // Try to downcast event to EKEvent or print an Error Message
-//        if let eventStoreEvent = event as? EKEvent {
-//            try self.save(eventStoreEvent , span: span, commit: commit)
-//        } else {
-//            print("Das ist kein EKEvent, sondern \(String(describing: event))")
-//        }
-//    }
-//
-//    func event<Event>(withIdentifier identifier: String) -> Event? {
-//        return self.event(withIdentifier: identifier)
-//    }
-//
-//    func remove<Event>(_ event: Event, span: EKSpan) throws {
-//        // Try to downcast event to EKEvent or print an Error Message
-//        if let eventStoreEvent = event as? EKEvent {
-//            try self.remove(eventStoreEvent, span: span)
-//        } else {
-//            print("Das ist kein EKEvent, sondern \(String(describing: event))")
-//        }
-//    }
-    
-//    typealias Event = MockEvent
-}
+extension EKEventStore: EventStoring {}
 
 
 // MARK: EventStoreEvent protocol
@@ -125,7 +101,7 @@ extension EKEventStore: EventStoring {
  - Note: Some of the properties come from EKEvent it self and some it inherits from its super Class EKCalenderItem
  */
 protocol EventStoreEvent {
-    associatedtype MatchingEventStore: EventStoring
+    associatedtype MatchingEventStore: EventStoring where MatchingEventStore.Event == Self 
     
     /// The title for the calendar item.
     /// - Note: [Documentation of the correlating method in EventKit](https://developer.apple.com/documentation/eventkit/ekcalendaritem/1507305-title)
@@ -164,16 +140,6 @@ protocol EventStoreEvent {
     static func createEvent(eventStore: MatchingEventStore) -> Self
 }
 
-//extension EKEvent {
-//    convenience init?<Store: EventStoring>(genericEventStore: Store) {
-//        if let appleEventStore = genericEventStore as? EKEventStore {
-//            self.init(eventStore: appleEventStore)
-//        } else {
-//            return nil
-//        }
-//    }
-//}
-
 extension EKEvent: EventStoreEvent {
     typealias MatchingEventStore = EKEventStore
     
@@ -182,26 +148,26 @@ extension EKEvent: EventStoreEvent {
     }
 }
 
-// MARK: EventManager protocol
-/**
- All the interfaces a viewcontroller needs to handle events in an event store
- */
-protocol EventManagerProtocol {
-    associatedtype EventStore: EventStoring
-    
-    var store: EventStore { get }
-//    var eventStoreEvent: Event? { get set }
-    
-    init(with store: EventStore)
-    
-    func createCalendarEvent(for eventCreationPreset: EventCreationPreset) throws -> String
-    
-    func removeCalendarEventCorrespondingTo(_ eventCreationPreset: EventCreationPreset) throws
-    
-    func editCalendarEventCorrespondingTo(_ eventCreationPreset: EventCreationPreset) throws
-    
-    // - TODO : The method name shoul express better what is returned
-    func needsToUpdate(_ preset: EventCreationPreset) throws -> Bool
-    
-    func update(_ preset: EventCreationPreset) throws
-}
+//// MARK: EventManager protocol
+///**
+// All the interfaces a viewcontroller needs to handle events in an event store
+// */
+//protocol EventManagerProtocol {
+//    associatedtype EventStore: EventStoring
+//
+//    var store: EventStore { get }
+////    var eventStoreEvent: Event? { get set }
+//
+//    init(with store: EventStore)
+//
+//    func createCalendarEvent(for eventCreationPreset: EventCreationPreset) throws -> String
+//
+//    func removeCalendarEventCorrespondingTo(_ eventCreationPreset: EventCreationPreset) throws
+//
+//    func editCalendarEventCorrespondingTo(_ eventCreationPreset: EventCreationPreset) throws
+//
+//    // - TODO : The method name shoul express better what is returned
+//    func needsToUpdate(_ preset: EventCreationPreset) throws -> Bool
+//
+//    func update(_ preset: EventCreationPreset) throws
+//}

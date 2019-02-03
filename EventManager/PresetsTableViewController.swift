@@ -18,7 +18,7 @@ class PresetsTableViewController: UITableViewController {
     /// An array of event creation presets.
     var presets = [EventCreationPreset]()
     /// An helper object that manages the comunication with the event store.
-    var eventManager: EventManger<EKEvent>!
+    var eventManager: EventManager<EKEvent>!
     
     
     override func viewDidLoad() {
@@ -157,7 +157,7 @@ class PresetsTableViewController: UITableViewController {
                     tableView.reloadRows(at: [selectedIndexPath], with: .none)
                     
                 } catch EventHelperError.unableToRetrieveEvent(let unrecognizedID) {
-                    print("The event could not be updated. No event found with the ID: \(unrecognizedID)")
+                    print("The event could not be updated. No event found with the ID: \(String(describing: unrecognizedID))")
                 } catch {
                     print(error)
                 }

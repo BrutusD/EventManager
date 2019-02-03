@@ -43,9 +43,12 @@ class EventCreationPresetTests: XCTestCase {
         // Initialize with a valid UUID, that seem to be two uuids seeperated by a colon
         let UUIDEvent = EventCreationPreset.init(title: "Test Event", date: Date(), identifierForEvent: UUID().uuidString + ":" + UUID().uuidString)
         XCTAssertNotNil(UUIDEvent)
+        
+        // Test if a event without identifier is also not nil
+        XCTAssertNotNil(eventPresetWithoutID)
     }
     
-    // Confirm that the EventCreationPreset initializer returns nil whe passed a non vailid titel string.
+    // Confirm that the EventCreationPreset initializer returns nil when passed a non vailid titel string.
     func testEventPresetInitializationFails() {
         // Empty title string will not produce a valid event preset
         let someStringEvent = EventCreationPreset.init(title: "", date: Date())
@@ -62,16 +65,39 @@ class EventCreationPresetTests: XCTestCase {
     
     // Confirm that the preset will not accept a unpropper identifier and set the id to be nil
     func testUnacceptableIdentifierWontBeStored() throws {
-        XCTAssertThrowsError(try eventPresetWithoutID?.set(UUID().uuidString))
+        let onlyOneUUID = UUID().uuidString
+        let notAUUID = "this is no uuid:and this is alos no uuid"
+        let similarButNotAUUID1 = "1234567-123-123-123-12345678901"
+        let similarButNotAUUID2 = "12345678-12345-12345-1234567890123"
+        // A string that is no uuid.
+        XCTAssertThrowsError(try eventPresetWithoutID?.set(notAUUID))
+        XCTAssertNil(eventPresetWithoutID!.getIdentifier())
+        // A string that consists of only one uuid.
+        XCTAssertThrowsError(try eventPresetWithoutID?.set(onlyOneUUID))
+        XCTAssertNil(eventPresetWithoutID!.getIdentifier())
+        // Strings that have the wrong number of caracters in each substring.
+        XCTAssertThrowsError(try eventPresetWithoutID?.set(similarButNotAUUID1 + ":" + similarButNotAUUID1))
+        XCTAssertNil(eventPresetWithoutID!.getIdentifier())
+        XCTAssertThrowsError(try eventPresetWithoutID?.set(similarButNotAUUID2 + ":" + similarButNotAUUID2))
+        XCTAssertNil(eventPresetWithoutID!.getIdentifier())
+        XCTAssertThrowsError(try eventPresetWithoutID?.set(similarButNotAUUID1 + ":" + similarButNotAUUID2))
+        XCTAssertNil(eventPresetWithoutID!.getIdentifier())
+        XCTAssertThrowsError(try eventPresetWithoutID?.set(similarButNotAUUID2 + ":" + similarButNotAUUID1))
+        XCTAssertNil(eventPresetWithoutID!.getIdentifier())
+        // A string that has to many substrings.
+        XCTAssertThrowsError(try eventPresetWithoutID?.set(onlyOneUUID + "-1:" + onlyOneUUID + "-1"))
         XCTAssertNil(eventPresetWithoutID!.getIdentifier())
     }
-
-    /*
-     - TODO: Write test for the event helper
-     Information on how to write test for EventKit using the EKEventStore [from Stack Overflow](https://stackoverflow.com/questions/25410129/any-chance-to-write-unit-tests-against-ekeventstore?rq=1)
-     */
     
-    // - ToDo: Write a test, that assainges different strings to an event preset. some work some don't
-    
-
+    // - TODO: Sadly I do not know yet how this is accomplished :(
+//    func testEncodeAndDecode() {
+//        let presetToEncode = EventCreationPreset(title: "Freude Schöner 𝕲Ȫⓣ𝕋⒠ℛ  🎆", date: Date(), identifierForEvent: UUID().uuidString + ":" + UUID().uuidString)
+//
+//        let coder = NSCoder()
+//
+//        XCTAssertNoThrow(presetToEncode?.encode(with: coder))
+//
+//        let presetAfterDecode = EventCreationPreset.init(coder: coder)
+//        XCTAssertEqual(presetToEncode, presetAfterDecode)
+//    }
 }

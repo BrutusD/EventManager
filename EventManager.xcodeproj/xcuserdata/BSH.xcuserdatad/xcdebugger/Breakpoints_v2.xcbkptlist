@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/PresetsTableViewController.swift"
-            timestampString = "570650890.322896"
+            timestampString = "570891783.332431"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "292"
@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventHelper.swift"
-            timestampString = "570650890.322962"
+            timestampString = "570743833.9009269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "208"
@@ -84,7 +84,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventHelper.swift"
-            timestampString = "570650890.323369"
+            timestampString = "570743833.90114"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "185"
@@ -132,7 +132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventHelper.swift"
-            timestampString = "570650890.323709"
+            timestampString = "570743833.901193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "197"
@@ -193,7 +193,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/PresetsTableViewController.swift"
-            timestampString = "570650890.324097"
+            timestampString = "570891783.333076"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "144"
@@ -209,7 +209,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/PresetsTableViewController.swift"
-            timestampString = "570650890.324156"
+            timestampString = "570891783.333325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "203"
@@ -225,11 +225,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManagerTests/EventCreationPresetTests.swift"
-            timestampString = "569230735.168444"
+            timestampString = "570893085.125"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "testUnacceptableIdentifierWontBeStored()"
             landmarkType = "7">
          </BreakpointContent>
@@ -237,17 +237,95 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventManager.swift"
-            timestampString = "570650890.324258"
+            timestampString = "570893085.125311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
             endingLineNumber = "47"
             landmarkName = "createCalendarEvent(for:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventManagerTests/EventManagerIntergrationTests.swift"
+            timestampString = "570893085.125502"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "EventManagerIntergrationTests"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventManagerTests.EventManagerIntergrationTests.eventPresetWithoutID.getter : EventManager.EventCreationPreset"
+                  moduleName = "EventManagerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BSH/Documents/coding/EventManager/EventManagerTests/EventManagerIntergrationTests.swift"
+                  timestampString = "570892761.588863"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventManagerTests.EventManagerIntergrationTests.init(invocation: Swift.Optional&lt;__C.NSInvocation&gt;) -&gt; EventManagerTests.EventManagerIntergrationTests"
+                  moduleName = "EventManagerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BSH/Documents/coding/EventManager/EventManagerTests/EventManagerIntergrationTests.swift"
+                  timestampString = "570892761.5907429"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "41">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventManagerTests.EventManagerIntergrationTests.init(selector: ObjectiveC.Selector) -&gt; EventManagerTests.EventManagerIntergrationTests"
+                  moduleName = "EventManagerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BSH/Documents/coding/EventManager/EventManagerTests/EventManagerIntergrationTests.swift"
+                  timestampString = "570892761.592526"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "41">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventManagerTests.EventManagerIntergrationTests.init() -&gt; EventManagerTests.EventManagerIntergrationTests"
+                  moduleName = "EventManagerTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BSH/Documents/coding/EventManager/EventManagerTests/EventManagerIntergrationTests.swift"
+                  timestampString = "570892761.5942889"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

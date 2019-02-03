@@ -53,7 +53,7 @@ class EventHelper {
         try confirmAuthorization(for: .event)
         
         // Create a new event with instructions from the preset.
-        let newEvent = EKEvent(eventStore: store as! EKEventStore)
+        let newEvent = EKEvent(eventStore: store /*as! EKEventStore*/)
         newEvent.title = eventCreationPreset.title
         newEvent.startDate = eventCreationPreset.date
         newEvent.endDate = eventCreationPreset.date.addingTimeInterval(EventCreationPreset.twoHourTimeInterval!)

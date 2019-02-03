@@ -15,6 +15,7 @@ class EventCreationPreset: NSObject, NSCoding {
     
     // MARK: Properties
     /// The title for the event
+    /// - TODO: Wie verhindere ich das der Titel im nachhinein zu "" wird?
     var title: String
     
     /// The start date of the event

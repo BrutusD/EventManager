@@ -15,7 +15,7 @@ import EventKit
   -  NOTE: I got my main inspiration for the three key functions to add, change and delete an EKEvent from the event store and how to get acces to it from this Stack Overflow question thread (esp. Rujoota Shah's Answer from Sep 25 '16 at 2:44): [How to add an event in the device calendar using swift](https://stackoverflow.com/questions/28379603/how-to-add-an-event-in-the-device-calendar-using-swift)
  */
 
-class EventManger<StoreEvent: EventStoreEvent>: EventManagerProtocol  {
+class EventManager<StoreEvent: EventStoreEvent>  {
     // MARK: Properties
     /// The store from the system with wich the event manager interacts.
     /// - TODO: Make the store property private.
@@ -46,15 +46,10 @@ class EventManger<StoreEvent: EventStoreEvent>: EventManagerProtocol  {
         eventStoreEvent.endDate = Date(timeInterval: EventCreationPreset.twoHourTimeInterval!, since: eventCreationPreset.date)
         eventStoreEvent.calendar = store.defaultCalendarForNewEvents
         
-        // Make sure the event store is right for this type of event
-        guard eventStoreEvent is StoreEvent.MatchingEventStore.Event else {
-            throw EventManagerError.StoreEventIncompatibility
-        }
-        
         // Save the event to the event store
         do {
-            try store.save(eventStoreEvent as! StoreEvent.MatchingEventStore.Event, span: .thisEvent, commit: true)
-            print("Saved event of type \(type(of: eventStoreEvent)) with identifier \(String(describing: eventStoreEvent.eventIdentifier)) to the event store.")        }
+            try store.save(eventStoreEvent , span: .thisEvent, commit: true)
+            print("Saved event of type \(type(of: eventStoreEvent)) titled \(String(describing: eventStoreEvent.title)) with identifier \(String(describing: eventStoreEvent.eventIdentifier)) to the event store.")        }
         
         // Return the now set event identifieer
         return eventStoreEvent.eventIdentifier
@@ -85,7 +80,7 @@ class EventManger<StoreEvent: EventStoreEvent>: EventManagerProtocol  {
         // Remove the event from the store
         do {
             try store.remove(eventToRemove, span: .thisEvent)
-            print("Removed event object of type \(type(of: eventToRemove)) with identifier \(String(describing: identifier)) from store.")
+            print("Removed event object of type \(type(of: eventToRemove)) titled \(String(describing: eventToRemove.title)) with identifier \(String(describing: identifier)) from store.")
         } catch {
             print("Failed to remove event from event store with error: \(error)")
         }
@@ -121,7 +116,7 @@ class EventManger<StoreEvent: EventStoreEvent>: EventManagerProtocol  {
         // TODO: Warum muss ich das event hier nicht downcasten, bei create aber schon?
         do {
             try store.save(eventToEdit , span: .thisEvent, commit: true)
-            print("Updating event object of type \(type(of: eventToEdit)) with identifier \(String(describing: identifier)) succsefull.")
+            print("Updating event object of type \(type(of: eventToEdit)) titled \(String(describing: eventToEdit.title)) with identifier \(String(describing: identifier)) succsefull.")
         } catch {
             print("Failed to update event with error message: \(error).")
         }
@@ -217,7 +212,7 @@ class EventManger<StoreEvent: EventStoreEvent>: EventManagerProtocol  {
      - Throws: An error of type `EventHelperError`
      */
     private func confirmAuthorization(for entityType: EKEntityType) throws {
-        switch EKEventStore.authorizationStatus(for: entityType) {
+        switch StoreEvent.MatchingEventStore.authorizationStatus(for: entityType) {
         case EKAuthorizationStatus.notDetermined:
             // First request authorisation for the entity type.
             requestAuthorisation(for: entityType)
@@ -228,11 +223,11 @@ class EventManger<StoreEvent: EventStoreEvent>: EventManagerProtocol  {
             
         case EKAuthorizationStatus.denied:
             print("Access to the event store was denied.")
-            throw EventHelperError.authorisationDenied
+            throw EventManagerError.authorisationDenied
             
         case EKAuthorizationStatus.restricted:
             print("Access to the event store was restricted.")
-            throw EventHelperError.authorisationRestricted
+            throw EventManagerError.authorisationRestricted
             
         case EKAuthorizationStatus.authorized:
             print("Acces to the event store granted.")

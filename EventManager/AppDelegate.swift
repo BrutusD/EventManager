@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Creating an event store and an event helper 🍾
         let newEventStore = EKEventStore()
-        let newEventManager = EventManger<EKEvent>(with: newEventStore)
+        let newEventManager = EventManager<EKEvent>(with: newEventStore)
         
         // Access the PresetsTableViewController and set its event store and its event helper porperties.
         let navigationController = window!.rootViewController as! UINavigationController
