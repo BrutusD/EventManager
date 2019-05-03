@@ -178,8 +178,9 @@ class PresetsTableViewController: UITableViewController {
                 }
             } else {
                 // If no table view row is selected create a new calendar event that corresponds to the preset.
-                eventHelper.createCalendarEvent(for: preset) { (identifier, error) in
-                    if error == nil {
+                eventHelper.createCalendarEvent(for: preset) { result in
+                    switch result {
+                    case .success(let identifier):
                         preset.identifierForEvent = identifier
                         
                         // Add the new event creation preset to the preset array.
@@ -190,10 +191,13 @@ class PresetsTableViewController: UITableViewController {
                         
                         // Save the presets.
                         self.saveEventCreationPresets()
-                    } else {
-                        self.handleNotAuthorizedStatus(error!)
+                    case .failure(let error):
+                        self.handleNotAuthorizedStatus(error)
+                    }
                 }
             }
+        }
+    }
 //                } catch EventHelperError.authorisationDenied {
 //                    print("Access to the EKEventStore was denied.")
 //
@@ -220,9 +224,9 @@ class PresetsTableViewController: UITableViewController {
 //
 //                // Assing the EKevent identifier to the preset.
 //                preset.identifierForEvent = newCalendarEventIdentifier
-            }
-        }
-    }
+//            }
+//        }
+//    }
     
     /// - NOTE: I found the explanation to trigger a unwind segue entirely from code [here](https://www.andrewcbancroft.com/2015/12/18/working-with-unwind-segues-programmatically-in-swift/#trigger)
     /// Of course the concrete implementation is mine.
@@ -298,11 +302,13 @@ class PresetsTableViewController: UITableViewController {
             
             // Create events for all presets
             for preset in presets {
-                eventHelper.createCalendarEvent(for: preset) { (identifier, error) in
-                    if error == nil {
+                eventHelper.createCalendarEvent(for: preset) { result in
+                    
+                    switch result {
+                    case .success(let identifier):
                         preset.identifierForEvent = identifier
-                    } else {
-                        self.handleNotAuthorizedStatus(error!)
+                    case .failure(let error):
+                        self.handleNotAuthorizedStatus(error)
                     }
                 }
             }
