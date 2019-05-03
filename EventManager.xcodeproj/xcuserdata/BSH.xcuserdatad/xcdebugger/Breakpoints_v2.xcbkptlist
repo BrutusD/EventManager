@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/PresetsTableViewController.swift"
-            timestampString = "568651078.325294"
+            timestampString = "572371232.436013"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "storeChanged()"
             landmarkType = "7">
          </BreakpointContent>
@@ -36,13 +36,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventHelper.swift"
-            timestampString = "568651078.326043"
+            timestampString = "572371232.436657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "update(_:)"
-            landmarkType = "7">
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "EventHelper"
+            landmarkType = "3">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -84,13 +84,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventHelper.swift"
-            timestampString = "568651078.3265769"
+            timestampString = "572371232.436823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "needsToUpdate(_:)"
-            landmarkType = "7">
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "EventHelper"
+            landmarkType = "3">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -132,13 +132,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventHelper.swift"
-            timestampString = "568651078.3269221"
+            timestampString = "572371232.4368761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "needsToUpdate(_:)"
-            landmarkType = "7">
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "EventHelper"
+            landmarkType = "3">
             <Actions>
                <BreakpointActionProxy
                   ActionExtensionID = "Xcode.BreakpointAction.Log">
@@ -169,7 +169,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/EventCreationPresetViewController.swift"
-            timestampString = "568651078.327257"
+            timestampString = "572371232.436928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
@@ -180,7 +180,7 @@
                <BreakpointActionProxy
                   ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
                   <ActionContent
-                     consoleCommand = "po segue">
+                     consoleCommand = "po seque">
                   </ActionContent>
                </BreakpointActionProxy>
             </Actions>
@@ -193,13 +193,199 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/PresetsTableViewController.swift"
-            timestampString = "568651078.32748"
+            timestampString = "572371232.437085"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "unwindToPresetsList(sender:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventManager/PresetsTableViewController.swift"
+            timestampString = "572371232.437333"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "unwindToPresetListAndDelete(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventManager/PresetsTableViewController.swift"
+            timestampString = "572371232.4375809"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "unwindToPresetsList(sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventManager.PresetsTableViewController.unwindToPresetsList(sender: __C.UIStoryboardSegue) -&gt; ()"
+                  moduleName = "EventManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BSH/Documents/coding/EventManager/EventManager/PresetsTableViewController.swift"
+                  timestampString = "571851882.517309"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "2613">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventManager.PresetsTableViewController.unwindToPresetsList(sender: __C.UIStoryboardSegue) -&gt; ()"
+                  moduleName = "EventManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BSH/Documents/coding/EventManager/EventManager/PresetsTableViewController.swift"
+                  timestampString = "571851882.519552"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "3953">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventManager/EventHelper.swift"
+            timestampString = "572371232.4378099"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "createCalendarEvent(for:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventManager/PresetsTableViewController.swift"
+            timestampString = "572371232.437863"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "unwindToPresetsList(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EventManager/EventCreationPresetViewController.swift"
+            timestampString = "572371232.43811"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "EventCreationPresetViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventManager.EventCreationPresetViewController.saveButton.getter : weak Swift.Optional&lt;__C.UIBarButtonItem&gt;"
+                  moduleName = "EventManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BSH/Documents/coding/EventManager/EventManager/EventCreationPresetViewController.swift"
+                  timestampString = "572370595.562989"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventManager.EventCreationPresetViewController.saveButton.setter : weak Swift.Optional&lt;__C.UIBarButtonItem&gt;"
+                  moduleName = "EventManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BSH/Documents/coding/EventManager/EventManager/EventCreationPresetViewController.swift"
+                  timestampString = "572370595.565327"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventManager.EventCreationPresetViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; EventManager.EventCreationPresetViewController"
+                  moduleName = "EventManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BSH/Documents/coding/EventManager/EventManager/EventCreationPresetViewController.swift"
+                  timestampString = "572370595.567058"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "285">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EventManager.EventCreationPresetViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;EventManager.EventCreationPresetViewController&gt;"
+                  moduleName = "EventManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/BSH/Documents/coding/EventManager/EventManager/EventCreationPresetViewController.swift"
+                  timestampString = "572370595.5690089"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "256">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "performSegue"
+            moduleName = "">
+            <Locations>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -209,12 +395,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EventManager/PresetsTableViewController.swift"
-            timestampString = "568651078.327877"
+            timestampString = "572371232.438161"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
-            landmarkName = "unwindToPresetListAndDelete(sender:)"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "unwindToPresetsList(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
